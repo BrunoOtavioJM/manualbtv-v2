@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter - Manual BTC Admin</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <script>
+        (function(){
+            var t = localStorage.getItem('manualbtc-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
+    <style>
+        .table-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .toast-container {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 9999;
+        }
+        .toast {
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .toast-success { background: #10b981; }
+    </style>
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar" id="admin-sidebar">
+            <div class="sidebar-logo">
+                <a href="dashboard.html">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 10c.83 0 1.5-.67 1.5-1.5v-1c0-.83-.67-1.5-1.5-1.5H11V10h3.5zm.5 2.5H11V15h4c.83 0 1.5-.67 1.5-1.5 0-.83-.67-1.5-1.5-1.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                    Manual<strong>BTC</strong> <span class="sidebar-badge">Admin</span>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html" data-page="dashboard">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                        Dashboard
+                    </a></li>
+                    <li><a href="nova-noticia.html" data-page="nova-noticia">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        Nova Notícia
+                    </a></li>
+                    <li><a href="gerenciar.html" data-page="gerenciar">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Gerenciar
+                    </a></li>
+                    <li class="active"><a href="newsletter.html" data-page="newsletter">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        Newsletter
+                    </a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../index.html" target="_blank" class="sidebar-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    Ver Site
+                </a>
+                <button class="btn-logout" id="btn-logout">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Sair
+                </button>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="admin-breadcrumb">Admin / Newsletter</div>
+            </header>
+
+            <div class="admin-content">
+                <h1 style="margin-bottom: 1.5rem;">Newsletter</h1>
+                
+                <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: var(--color-accent);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg></div>
+                        <div class="stat-label">Total de Assinantes</div>
+                        <div class="stat-number" id="stat-total">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: #10b981;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div>
+                        <div class="stat-label">Novos este mês</div>
+                        <div class="stat-number" id="stat-new">-</div>
+                    </div>
+                </div>
+
+                <div class="table-toolbar">
+                    <input type="text" id="search-input" class="field-input" placeholder="Buscar por e-mail..." style="width: 250px;">
+                    <button id="btn-export" class="btn-admin-primary">Exportar CSV</button>
+                </div>
+
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>E-mail</th>
+                                <th>Data de Cadastro</th>
+                                <th>IP</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="newsletter-tbody">
+                            <tr><td colspan="4" class="table-loading">Carregando...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="admin-pagination" id="nl-pagination" style="margin-top: 1rem; display: flex; justify-content: center; gap: 0.5rem;">
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <div id="toast-container" class="toast-container"></div>
+
+    <script type="module">
+        import { auth, db } from '../assets/js/firebase-config.js';
+        import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+        import { collection, getDocs, query, orderBy, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+        let allSubscribers = [];
+        let filteredSubscribers = [];
+        let currentPage = 1;
+        const itemsPerPage = 15;
+
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = '/admin/index.html';
+            } else {
+                loadSubscribers();
+            }
+        });
+
+        document.getElementById('btn-logout').addEventListener('click', () => {
+            signOut(auth).then(() => {
+                window.location.href = '/admin/index.html';
+            });
+        });
+
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-success`;
+            toast.textContent = message;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        async function loadSubscribers() {
+            try {
+                const q = query(collection(db, 'newsletter'), orderBy('createdAt', 'desc'));
+                const snapshot = await getDocs(q);
+                allSubscribers = [];
+                let novosEsteMes = 0;
+                const now = new Date();
+                const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const createdAtDate = data.createdAt ? data.createdAt.toDate() : null;
+                    if (createdAtDate && createdAtDate >= firstDayOfMonth) {
+                        novosEsteMes++;
+                    }
+                    allSubscribers.push({
+                        id: doc.id,
+                        email: data.email,
+                        createdAt: createdAtDate,
+                        ip: data.ip || 'Desconhecido'
+                    });
+                });
+
+                document.getElementById('stat-total').textContent = allSubscribers.length;
+                document.getElementById('stat-new').textContent = novosEsteMes;
+
+                applyFilters();
+            } catch(e) {
+                console.error("Erro ao carregar assinantes:", e);
+                document.getElementById('newsletter-tbody').innerHTML = '<tr><td colspan="4" class="table-empty">Erro ao carregar dados.</td></tr>';
+            }
+        }
+
+        function applyFilters() {
+            const search = document.getElementById('search-input').value.toLowerCase();
+            if(search) {
+                filteredSubscribers = allSubscribers.filter(s => (s.email || '').toLowerCase().includes(search));
+            } else {
+                filteredSubscribers = [...allSubscribers];
+            }
+            currentPage = 1;
+            renderTable();
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('newsletter-tbody');
+            tbody.innerHTML = '';
+
+            if (filteredSubscribers.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="table-empty" style="text-align:center;padding:2rem;">Nenhum assinante encontrado.</td></tr>';
+                renderPagination(0);
+                return;
+            }
+
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const paginatedItems = filteredSubscribers.slice(startIndex, endIndex);
+
+            paginatedItems.forEach(item => {
+                const date = item.createdAt ? item.createdAt.toLocaleDateString('pt-BR') : 'Sem data';
+                // Mascara o IP parcial
+                const maskedIp = item.ip !== 'Desconhecido' ? item.ip.replace(/\.\d+\.\d+$/, '.*.*') : item.ip;
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td><strong>${item.email}</strong></td>
+                        <td>${date}</td>
+                        <td>${maskedIp}</td>
+                        <td class="table-actions">
+                            <button class="btn-admin-secondary btn-sm" onclick="window.removeSubscriber('${item.id}', '${item.email}')" style="color:#dc2626;border-color:#dc2626;">Remover</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            renderPagination(filteredSubscribers.length);
+        }
+
+        function renderPagination(totalItems) {
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            const container = document.getElementById('nl-pagination');
+            container.innerHTML = '';
+            
+            if(totalPages <= 1) return;
+
+            for(let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.className = `btn-admin-secondary btn-sm ${i === currentPage ? 'active' : ''}`;
+                btn.textContent = i;
+                if(i === currentPage) {
+                    btn.style.background = 'var(--color-accent)';
+                    btn.style.color = '#000';
+                }
+                btn.onclick = () => {
+                    currentPage = i;
+                    renderTable();
+                };
+                container.appendChild(btn);
+            }
+        }
+
+        document.getElementById('search-input').addEventListener('input', applyFilters);
+
+        window.removeSubscriber = async (id, email) => {
+            if(confirm(`Tem certeza que deseja remover o e-mail ${email}?`)) {
+                try {
+                    await deleteDoc(doc(db, 'newsletter', id));
+                    showToast('Assinante removido com sucesso');
+                    // Remove localmente para não precisar recarregar
+                    allSubscribers = allSubscribers.filter(s => s.id !== id);
+                    document.getElementById('stat-total').textContent = allSubscribers.length;
+                    applyFilters();
+                } catch(e) {
+                    console.error(e);
+                    alert('Erro ao remover assinante');
+                }
+            }
+        };
+
+        document.getElementById('btn-export').addEventListener('click', () => {
+            if(allSubscribers.length === 0) return;
+            
+            let csvContent = "E-mail,Data de Cadastro\n";
+            allSubscribers.forEach(sub => {
+                const date = sub.createdAt ? sub.createdAt.toISOString() : '';
+                csvContent += `${sub.email},${date}\n`;
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", "newsletter_assinantes.csv");
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    </script>
+</body>
+</html>

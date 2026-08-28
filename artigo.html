@@ -1,0 +1,343 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="meta-title">Carregando Artigo... - Manual BTC</title>
+  <meta name="description" id="meta-description" content="Leia este artigo e entenda mais sobre os fundamentos, economia e a tecnologia por trás do Bitcoin.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" id="og-title" content="Artigo - Manual BTC">
+  <meta property="og:description" id="og-description" content="Leia mais no Manual BTC.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" id="og-url" content="https://manualbtc.com.br/artigo.html">
+  <meta property="og:image" id="og-image" content="https://manualbtc.com.br/assets/img/android-chrome-512x512.png">
+  <meta property="og:site_name" content="Manual BTC">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="article:published_time" id="article-published-time" content="">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" id="twitter-title" content="Artigo - Manual BTC">
+  <meta name="twitter:description" id="twitter-description" content="Leia mais no Manual BTC.">
+  <meta name="twitter:image" id="twitter-image" content="https://manualbtc.com.br/assets/img/android-chrome-512x512.png">
+
+  <!-- Canonical -->
+  <link rel="canonical" id="canonical-url" href="https://manualbtc.com.br/artigo.html">
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- JSON-LD Dinâmico preenchido no final via JS -->
+  <script type="application/ld+json" id="json-ld-article">
+  {}
+  </script>
+
+  <!-- FOUC Script -->
+  <script>(function(){var t=localStorage.getItem('manualbtc-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+  
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="site-logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.5 10c.83 0 1.5-.67 1.5-1.5v-1c0-.83-.67-1.5-1.5-1.5H11V10h3.5zm.5 2.5H11V15h4c.83 0 1.5-.67 1.5-1.5 0-.83-.67-1.5-1.5-1.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+        <span>Manual<strong>BTC</strong></span>
+      </a>
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="noticias.html" aria-current="page">Notícias</a></li>
+          <li><a href="fundamentos.html">Fundamentos</a></li>
+          <li><a href="aprenda.html">Aprenda</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="doacao.html" class="nav-cta">Apoiar</a></li>
+        </ul>
+      </nav>
+      <div class="header-controls">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="ad-slot ad-slot-leaderboard" style="margin-top: 1rem;">
+        <div class="ad-placeholder">Espaço Publicitário</div>
+      </div>
+    </div>
+
+    <!-- Container do Layout -->
+    <section class="section pt-0" style="margin-top: 2rem;">
+      <div class="container">
+        
+        <!-- Estado de Loading Inicial -->
+        <div id="article-loading" style="text-align: center; padding: 4rem 0; color: var(--color-text-muted);">
+          Carregando conteúdo da rede...
+        </div>
+
+        <div id="article-error" style="display: none; text-align: center; padding: 4rem 0; color: var(--color-text-primary);">
+          <h2>Artigo não encontrado</h2>
+          <p style="margin-top: 1rem; color: var(--color-text-secondary);">Desculpe, o conteúdo que você procura pode ter sido removido ou o link está incorreto.</p>
+          <a href="noticias.html" class="btn btn-primary" style="margin-top: 2rem;">Voltar para Notícias</a>
+        </div>
+
+        <!-- Conteúdo do Artigo, oculto até carregar -->
+        <div id="article-container" class="content-with-sidebar" style="display: none;">
+          
+          <article class="article-wrapper main-content">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="breadcrumb" style="margin-bottom: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">
+              <a href="index.html" style="color: var(--color-text-secondary); text-decoration: none;">Início</a> &gt; 
+              <a href="noticias.html" style="color: var(--color-text-secondary); text-decoration: none;">Notícias</a> &gt; 
+              <span id="breadcrumb-category">Categoria</span> &gt; 
+              <span id="breadcrumb-title" style="color: var(--color-text-primary);">Título do Artigo</span>
+            </nav>
+
+            <header class="article-header" style="margin-bottom: 2rem;">
+              <span id="article-category-badge" class="badge badge-accent" style="margin-bottom: 1rem; display: inline-block;">Categoria</span>
+              <h1 id="article-title" style="font-size: 2.5rem; line-height: 1.2; margin-bottom: 1rem;">Título do Artigo</h1>
+              
+              <div class="article-meta" style="display: flex; gap: 1.5rem; align-items: center; color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <time id="article-date">01 Jan, 2024</time>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  <span id="article-author">Autor</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span id="article-read-time">5 min leitura</span>
+                </div>
+              </div>
+
+              <!-- Imagem de Capa (Opcional) -->
+              <div id="article-cover-wrapper" style="display: none; border-radius: 8px; overflow: hidden; margin-bottom: 2rem;">
+                <img id="article-cover-img" src="" alt="Capa do artigo" style="width: 100%; height: auto; display: block;">
+              </div>
+            </header>
+
+            <!-- Conteúdo Principal formatado pelo Quill/Editor -->
+            <div id="article-content" class="article-content" style="font-size: 1.1rem; line-height: 1.8; color: var(--color-text-primary);">
+              <!-- Conteúdo renderizado via JS -->
+            </div>
+
+            <!-- Tags -->
+            <div id="article-tags" class="article-tags" style="margin-top: 3rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <!-- Span tags preenchidas via JS -->
+            </div>
+
+            <!-- Compartilhamento -->
+            <div class="article-share" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border); display: flex; align-items: center; gap: 1rem;">
+              <span style="font-weight: bold; color: var(--color-text-secondary);">Compartilhar:</span>
+              <button id="share-twitter" class="btn btn-ghost btn-sm" aria-label="Compartilhar no X (Twitter)">X / Twitter</button>
+              <button id="share-linkedin" class="btn btn-ghost btn-sm" aria-label="Compartilhar no LinkedIn">LinkedIn</button>
+              <button id="share-copy" class="btn btn-secondary btn-sm">Copiar Link</button>
+            </div>
+          </article>
+
+          <!-- Sidebar do Artigo -->
+          <aside class="sidebar">
+            <div class="ad-slot ad-slot-sidebar" style="margin-bottom: 2rem;">
+              <div class="ad-placeholder">Publicidade Vertical</div>
+            </div>
+
+            <div class="widget" style="margin-bottom: 2rem; background: var(--color-bg-card); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--color-border);">
+              <h3 style="margin-bottom: 1rem; font-size: 1.2rem; color: var(--color-text-primary);">Últimas Notícias</h3>
+              <div id="latest-sidebar" style="display: flex; flex-direction: column; gap: 1rem;">
+                <!-- Preenchido via JS -->
+              </div>
+            </div>
+
+            <div class="widget" style="background: var(--color-bg-card); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--color-border);">
+              <h3 style="margin-bottom: 1rem; font-size: 1.2rem; color: var(--color-text-primary);">Categorias</h3>
+              <ul class="category-list" style="list-style: none; padding: 0; margin: 0;">
+                <li style="margin-bottom: 0.5rem;"><a href="noticias.html" style="color: var(--color-text-secondary); text-decoration: none;">Fundamentos</a></li>
+                <li style="margin-bottom: 0.5rem;"><a href="noticias.html" style="color: var(--color-text-secondary); text-decoration: none;">Economia</a></li>
+                <li style="margin-bottom: 0.5rem;"><a href="noticias.html" style="color: var(--color-text-secondary); text-decoration: none;">Mineração</a></li>
+              </ul>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">Manual<strong>BTC</strong></a>
+          <p>O guia definitivo sobre Bitcoin. Educação, análise e fundamentos para quem leva o Bitcoin a sério.</p>
+          <address><a href="mailto:etc.env@outlook.com">etc.env@outlook.com</a></address>
+        </div>
+        <div class="footer-nav-group"><h3>Conteúdo</h3><ul><li><a href="noticias.html">Notícias</a></li><li><a href="fundamentos.html">Fundamentos</a></li><li><a href="aprenda.html">Aprenda</a></li></ul></div>
+        <div class="footer-nav-group"><h3>Institucional</h3><ul><li><a href="sobre.html">Sobre Nós</a></li><li><a href="contato.html">Contato</a></li><li><a href="doacao.html">Apoiar</a></li></ul></div>
+        <div class="footer-nav-group"><h3>Legal</h3><ul><li><a href="politica-privacidade.html">Privacidade</a></li><li><a href="termos-uso.html">Termos de Uso</a></li><li><a href="aviso-legal.html">Aviso Legal</a></li></ul></div>
+        <div class="footer-newsletter">
+          <h3>Newsletter</h3>
+          <p>Análises e notícias diretamente no seu e-mail.</p>
+          <form class="newsletter-form" id="newsletter-form-footer">
+            <input type="email" placeholder="Seu endereço de e-mail" required aria-label="E-mail">
+            <button type="submit" class="btn btn-primary btn-sm">Assinar</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Manual BTC. Todos os direitos reservados.</p>
+        <p class="footer-disclaimer">O conteúdo deste site é exclusivamente educacional e informativo. Não constitui consultoria financeira. <a href="aviso-legal.html">Leia o aviso legal completo.</a></p>
+      </div>
+    </div>
+  </footer>
+  <div class="cookie-banner" id="cookie-banner" role="alert">
+    <div class="container">
+      <p>Utilizamos cookies para melhorar sua experiência e para análise de tráfego. Ao continuar navegando, você concorda com nossa <a href="politica-privacidade.html">Política de Privacidade</a>.</p>
+      <button class="btn btn-primary btn-sm" id="cookie-accept">Aceitar</button>
+    </div>
+  </div>
+
+  <script type="module" src="assets/js/theme.js"></script>
+  <script type="module" src="assets/js/main.js"></script>
+  
+  <script type="module">
+    // Lógica para   <script type="module">
+    import { getArticleById, getLatestArticles, incrementViews } from './assets/js/firestore-news.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const articleId = urlParams.get('id');
+
+      if (!articleId) {
+        document.getElementById('article-loading').style.display = 'none';
+        document.getElementById('article-error').style.display = 'block';
+        return;
+      }
+
+      try {
+        const article = await getArticleById(articleId);
+
+        if (!article || article.status !== 'published') {
+          document.getElementById('article-loading').style.display = 'none';
+          document.getElementById('article-error').style.display = 'block';
+          return;
+        }
+
+        document.getElementById('article-title').textContent = article.title;
+        document.getElementById('breadcrumb-title').textContent = article.title;
+        document.getElementById('breadcrumb-category').textContent = article.category || 'Geral';
+        document.getElementById('article-category-badge').textContent = article.category || 'Geral';
+
+        const pub = article.publishedAt?.toDate ? article.publishedAt.toDate() : new Date(article.publishedAt || Date.now());
+        document.getElementById('article-date').textContent = pub.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+        document.getElementById('article-author').textContent = article.author || 'Manual BTC';
+        document.getElementById('article-read-time').textContent = (article.readingTime || 1) + ' min leitura';
+
+        if (article.coverImageUrl) {
+          const coverEl = document.getElementById('article-cover');
+          if (coverEl) {
+            const img = document.createElement('img');
+            img.src = article.coverImageUrl;
+            img.alt = article.title;
+            img.className = 'article-cover';
+            img.loading = 'lazy';
+            coverEl.replaceWith(img);
+          }
+        }
+
+        let contentHtml = article.content || '';
+        const parts = contentHtml.split('</p>');
+        if (parts.length > 3) {
+          parts.splice(3, 0, '</p><div class="ad-slot ad-slot-in-article" aria-label="Publicidade"></div>');
+          contentHtml = parts.join('');
+        } else {
+          contentHtml = parts.join('</p>');
+        }
+        document.getElementById('article-content').innerHTML = contentHtml;
+
+        const tagsContainer = document.getElementById('article-tags');
+        if (article.tags && article.tags.length) {
+          article.tags.forEach(tag => {
+            const span = document.createElement('span');
+            span.className = 'article-tag';
+            span.textContent = tag;
+            tagsContainer.appendChild(span);
+          });
+        } else {
+          if (tagsContainer) tagsContainer.style.display = 'none';
+        }
+
+        const pageUrl = 'https://manualbtc.com.br/artigo.html?id=' + articleId;
+        document.title = article.title + ' - Manual BTC';
+        document.getElementById('meta-description').setAttribute('content', article.excerpt || '');
+        document.getElementById('og-title').setAttribute('content', article.title);
+        document.getElementById('og-description').setAttribute('content', article.excerpt || '');
+        document.getElementById('og-url').setAttribute('content', pageUrl);
+        if (article.coverImageUrl) document.getElementById('og-image').setAttribute('content', article.coverImageUrl);
+        document.getElementById('article-published-time').setAttribute('content', pub.toISOString());
+        document.getElementById('twitter-title').setAttribute('content', article.title);
+        document.getElementById('twitter-description').setAttribute('content', article.excerpt || '');
+        if (article.coverImageUrl) document.getElementById('twitter-image').setAttribute('content', article.coverImageUrl);
+        document.getElementById('canonical-url').setAttribute('href', pageUrl);
+
+        document.getElementById('json-ld-article').textContent = JSON.stringify({
+          '@context': 'https://schema.org', '@type': 'Article',
+          'headline': article.title, 'description': article.excerpt || '',
+          'image': article.coverImageUrl || '',
+          'author': { '@type': 'Person', 'name': article.author || 'Manual BTC' },
+          'publisher': { '@type': 'Organization', 'name': 'Manual BTC', 'url': 'https://manualbtc.com.br' },
+          'datePublished': pub.toISOString(),
+          'dateModified': article.updatedAt?.toDate ? article.updatedAt.toDate().toISOString() : pub.toISOString(),
+          'url': pageUrl
+        });
+
+        document.getElementById('article-loading').style.display = 'none';
+        document.getElementById('article-container').style.display = 'block';
+
+        incrementViews(articleId).catch(() => {});
+
+        const latest = await getLatestArticles(6);
+        const sidebarEl = document.getElementById('latest-sidebar');
+        if (sidebarEl && latest.length) {
+          sidebarEl.innerHTML = latest.filter(a => a.id !== articleId).slice(0, 5).map(a => {
+            const d = a.publishedAt?.toDate ? a.publishedAt.toDate() : new Date(a.publishedAt || Date.now());
+            return '<a href="artigo.html?id=' + a.id + '" class="news-card-mini">' +
+              (a.coverImageUrl ? '<img src="' + a.coverImageUrl + '" class="news-card-mini-img" alt="' + a.title + '" loading="lazy">' : '<div class="news-card-mini-img"></div>') +
+              '<div class="news-card-mini-body"><span class="news-card-mini-title">' + a.title + '</span>' +
+              '<span class="news-card-mini-date">' + d.toLocaleDateString('pt-BR') + '</span></div></a>';
+          }).join('');
+        }
+
+      } catch (err) {
+        console.error('Erro ao carregar artigo:', err);
+        document.getElementById('article-loading').style.display = 'none';
+        document.getElementById('article-error').style.display = 'block';
+      }
+
+      document.getElementById('share-copy')?.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          const btn = document.getElementById('share-copy');
+          const orig = btn.textContent; btn.textContent = 'Copiado!';
+          setTimeout(() => { btn.textContent = orig; }, 2000);
+        } catch (e) {}
+      });
+      document.getElementById('share-twitter')?.addEventListener('click', () => {
+        window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + '&url=' + encodeURIComponent(window.location.href), '_blank');
+      });
+      document.getElementById('share-linkedin')?.addEventListener('click', () => {
+        window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href), '_blank');
+      });
+    });
+  </script>
+</body>
+</html>

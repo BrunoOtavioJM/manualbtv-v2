@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Manual BTC Admin</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <script>
+        (function(){
+            var t = localStorage.getItem('manualbtc-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar" id="admin-sidebar">
+            <div class="sidebar-logo">
+                <a href="dashboard.html">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 10c.83 0 1.5-.67 1.5-1.5v-1c0-.83-.67-1.5-1.5-1.5H11V10h3.5zm.5 2.5H11V15h4c.83 0 1.5-.67 1.5-1.5 0-.83-.67-1.5-1.5-1.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                    Manual<strong>BTC</strong> <span class="sidebar-badge">Admin</span>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="dashboard.html" data-page="dashboard">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                        Dashboard
+                    </a></li>
+                    <li><a href="nova-noticia.html" data-page="nova-noticia">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        Nova Notícia
+                    </a></li>
+                    <li><a href="gerenciar.html" data-page="gerenciar">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Gerenciar
+                    </a></li>
+                    <li><a href="newsletter.html" data-page="newsletter">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        Newsletter
+                    </a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../index.html" target="_blank" class="sidebar-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    Ver Site
+                </a>
+                <button class="btn-logout" id="btn-logout">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Sair
+                </button>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="admin-breadcrumb">Admin / Dashboard</div>
+                <div class="admin-user-info">
+                    <span class="admin-user-email" id="user-email">Carregando...</span>
+                    <button id="theme-toggle" class="btn-admin-secondary btn-sm">Tema</button>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <h1>Dashboard</h1>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div>
+                        <div class="stat-label">Total de Notícias</div>
+                        <div class="stat-number" id="stat-total">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: #10b981;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+                        <div class="stat-label">Publicadas</div>
+                        <div class="stat-number" id="stat-published">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: #f59e0b;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+                        <div class="stat-label">Rascunhos</div>
+                        <div class="stat-number" id="stat-drafts">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: #3b82f6;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg></div>
+                        <div class="stat-label">Assinantes Newsletter</div>
+                        <div class="stat-number" id="stat-newsletter">-</div>
+                    </div>
+                </div>
+
+                <div class="section-title" style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.25rem; font-weight: 600;">Acesso Rápido</div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                    <a href="nova-noticia.html" class="btn-admin-primary" style="text-align: center; padding: 1rem;">Nova Notícia</a>
+                    <a href="gerenciar.html" class="btn-admin-secondary" style="text-align: center; padding: 1rem;">Gerenciar Artigos</a>
+                    <a href="newsletter.html" class="btn-admin-secondary" style="text-align: center; padding: 1rem;">Ver Assinantes</a>
+                </div>
+
+                <div class="section-title" style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.25rem; font-weight: 600;">Últimas Publicações</div>
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="latest-articles">
+                            <tr><td colspan="4" class="table-loading">Carregando...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="section-title" style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.25rem; font-weight: 600;">Status do Sistema</div>
+                <div style="background: var(--color-bg-card); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--color-border);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background-color: #10b981;"></span>
+                        <strong>Firebase Conectado</strong>
+                    </div>
+                    <p style="color: var(--color-text-secondary); margin: 0;">Bem-vindo ao painel administrativo do Manual BTC. Tudo operando normalmente.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module">
+        import { auth, db } from '../assets/js/firebase-config.js';
+        import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+        import { collection, getDocs, query, orderBy, limit, where } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+        // Check Auth
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = '/admin/index.html';
+            } else {
+                document.getElementById('user-email').textContent = user.email;
+                loadDashboardData();
+            }
+        });
+
+        document.getElementById('btn-logout').addEventListener('click', () => {
+            signOut(auth).then(() => {
+                window.location.href = '/admin/index.html';
+            });
+        });
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('manualbtc-theme', newTheme);
+        });
+
+        async function loadDashboardData() {
+            try {
+                const articlesRef = collection(db, 'noticias');
+                const newsletterRef = collection(db, 'newsletter');
+
+                // Get all articles to count totals
+                const allArticlesSnap = await getDocs(articlesRef);
+                let total = 0;
+                let published = 0;
+                let drafts = 0;
+
+                allArticlesSnap.forEach(doc => {
+                    total++;
+                    if (doc.data().status === 'published') published++;
+                    else if (doc.data().status === 'draft') drafts++;
+                });
+
+                document.getElementById('stat-total').textContent = total;
+                document.getElementById('stat-published').textContent = published;
+                document.getElementById('stat-drafts').textContent = drafts;
+
+                // Get newsletter total
+                const newsletterSnap = await getDocs(newsletterRef);
+                document.getElementById('stat-newsletter').textContent = newsletterSnap.size;
+
+                // Get latest articles
+                const latestQuery = query(articlesRef, orderBy('createdAt', 'desc'), limit(5));
+                const latestSnap = await getDocs(latestQuery);
+                const tbody = document.getElementById('latest-articles');
+                tbody.innerHTML = '';
+
+                if (latestSnap.empty) {
+                    tbody.innerHTML = '<tr><td colspan="4" class="table-empty">Nenhum artigo encontrado.</td></tr>';
+                    return;
+                }
+
+                latestSnap.forEach(doc => {
+                    const data = doc.data();
+                    const date = data.publishDate ? new Date(data.publishDate).toLocaleDateString('pt-BR') : 'Sem data';
+                    const statusBadge = data.status === 'published' 
+                        ? '<span class="badge-published" style="background:#10b98120;color:#10b981;padding:0.25rem 0.5rem;border-radius:4px;font-size:0.875rem;">Publicado</span>' 
+                        : '<span class="badge-draft" style="background:#f59e0b20;color:#f59e0b;padding:0.25rem 0.5rem;border-radius:4px;font-size:0.875rem;">Rascunho</span>';
+                    
+                    tbody.innerHTML += `
+                        <tr>
+                            <td><a href="nova-noticia.html?id=${doc.id}" style="color:var(--color-text-primary);text-decoration:none;font-weight:500;">${data.title}</a></td>
+                            <td>${date}</td>
+                            <td>${statusBadge}</td>
+                            <td class="table-actions">
+                                <a href="nova-noticia.html?id=${doc.id}" class="btn-admin-secondary btn-sm">Editar</a>
+                                <a href="../artigo.html?id=${doc.id}" target="_blank" class="btn-admin-secondary btn-sm">Ver</a>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+            } catch (error) {
+                console.error("Erro ao carregar dados do dashboard:", error);
+            }
+        }
+    </script>
+</body>
+</html>

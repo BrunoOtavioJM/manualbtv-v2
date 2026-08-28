@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos do Bitcoin - Manual BTC</title>
+    <meta name="description" content="Guia completo sobre os fundamentos do Bitcoin. Entenda o whitepaper de Satoshi Nakamoto, blockchain, proof-of-work, halving e muito mais.">
+    <link rel="canonical" href="https://manualbtc.com/fundamentos.html">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Fundamentos do Bitcoin",
+      "description": "Guia completo sobre os fundamentos do Bitcoin. Entenda o whitepaper de Satoshi Nakamoto, blockchain, proof-of-work, halving e muito mais.",
+      "author": {
+        "@type": "Organization",
+        "name": "Manual BTC"
+      }
+    }
+    </script>
+    <script>(function(){var t=localStorage.getItem('manualbtc-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="site-logo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.5 10c.83 0 1.5-.67 1.5-1.5v-1c0-.83-.67-1.5-1.5-1.5H11V10h3.5zm.5 2.5H11V15h4c.83 0 1.5-.67 1.5-1.5 0-.83-.67-1.5-1.5-1.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+      <span>Manual<strong>BTC</strong></span>
+    </a>
+    <nav class="main-nav" id="main-nav">
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="noticias.html">Notícias</a></li>
+        <li><a href="fundamentos.html">Fundamentos</a></li>
+        <li><a href="aprenda.html">Aprenda</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="doacao.html" class="nav-cta">Apoiar</a></li>
+      </ul>
+    </nav>
+    <div class="header-controls">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="container ad-slot ad-slot-leaderboard">
+    <!-- Ad space -->
+</div>
+
+<main>
+    <section class="section-sm">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Início</a></li>
+                    <li>&gt;</li>
+                    <li aria-current="page">Fundamentos</li>
+                </ol>
+            </nav>
+            <h1 class="section-title">Fundamentos do Bitcoin</h1>
+            <p class="section-subtitle">O guia definitivo e aprofundado sobre a tecnologia, economia e filosofia do protocolo Bitcoin.</p>
+        </div>
+    </section>
+
+    <div class="container content-with-sidebar">
+        <article class="fundamentals-content">
+            <nav class="sticky-toc">
+                <h2>Índice</h2>
+                <ul>
+                    <li><a href="#whitepaper">O Whitepaper de Satoshi Nakamoto</a></li>
+                    <li><a href="#blockchain">Como Funciona a Blockchain</a></li>
+                    <li><a href="#proof-of-work">Proof of Work e Mineração</a></li>
+                    <li><a href="#halving">O Halving: Escassez Programada</a></li>
+                    <li><a href="#carteiras">Carteiras e Custódia</a></li>
+                    <li><a href="#lightning">Lightning Network</a></li>
+                    <li><a href="#nodes">Nós e Descentralização</a></li>
+                </ul>
+            </nav>
+
+            <section id="whitepaper" class="section">
+                <h2>O Whitepaper de Satoshi Nakamoto</h2>
+                <p>Publicado em 31 de outubro de 2008, o documento intitulado "Bitcoin: A Peer-to-Peer Electronic Cash System" de autoria do pseudônimo Satoshi Nakamoto, apresentou a primeira solução prática para o problema do gasto duplo (double-spending) em ambientes descentralizados. Antes do Bitcoin, moedas digitais invariavelmente necessitavam de uma entidade central para validar se um ativo digital já não havia sido gasto anteriormente.</p>
+                <p>Nakamoto propôs uma rede onde as transações seriam carimbadas no tempo (timestamped) através de hashes em uma cadeia contínua de provas de trabalho (proof-of-work). Essa arquitetura cria um registro histórico inalterável sem depender da confiança em terceiros. O documento estabelece as bases de um sistema financeiro autônomo, baseado puramente em prova criptográfica em vez de confiança institucional.</p>
+                <p>O whitepaper possui apenas nove páginas, porém sintetiza perfeitamente os incentivos econômicos e as ferramentas criptográficas necessárias para manter a rede segura. Ele detalha a utilização do algoritmo SHA-256, assinaturas digitais ECDSA e a topologia de rede peer-to-peer (P2P), que em conjunto garantem que nenhum nó malicioso consiga fraudar o estado das contas, desde que a maioria da força computacional (hashrate) seja honesta.</p>
+            </section>
+
+            <div class="ad-slot ad-slot-in-article">
+                <!-- In-article ad -->
+            </div>
+
+            <section id="blockchain" class="section">
+                <h2>Como Funciona a Blockchain</h2>
+                <p>A blockchain do Bitcoin é essencialmente um livro-razão público distribuído (distributed ledger). As transações são agrupadas em blocos, que são encadeados cronologicamente. Cada novo bloco gerado faz referência criptográfica direta ao bloco imediatamente anterior, criando uma cadeia matemática indissociável.</p>
+                <p>O cabeçalho de um bloco (block header) contém seis parâmetros fundamentais: versão, hash do bloco anterior, raiz de Merkle (Merkle Root, um hash que resume todas as transações do bloco), timestamp, meta de dificuldade (bits) e o nonce. A imutabilidade da blockchain advém do fato de que para alterar uma transação antiga, um atacante precisaria re-computar o hash daquele bloco e de todos os blocos subsequentes, competindo contra o poder de processamento de toda a rede.</p>
+<pre>
+Estrutura Simplificada de um Bloco
++-----------------------------------+
+| Cabeçalho (Block Header)          |
+|  - Hash do Bloco Anterior         |
+|  - Merkle Root                    |
+|  - Nonce                          |
++-----------------------------------+
+| Corpo do Bloco (Transações)       |
+|  - TX 1 (Coinbase)                |
+|  - TX 2                           |
+|  - TX n                           |
++-----------------------------------+
+</pre>
+                <p>Quando múltiplos blocos são encontrados simultaneamente, pode ocorrer uma reorganização (reorg), onde a rede adota a cadeia com mais prova de trabalho acumulada como a verdadeira. É por isso que transações de alto valor geralmente aguardam 6 confirmações (cerca de uma hora) para serem consideradas irreversíveis.</p>
+            </section>
+
+            <section id="proof-of-work" class="section">
+                <h2>Proof of Work e Mineração</h2>
+                <p>O Proof-of-Work (PoW) é o mecanismo de consenso que ancora a segurança do Bitcoin à termodinâmica real. Mineradores competem para encontrar um hash válido (um número que seja menor que a meta atual estabelecida pela rede), aplicando intensivamente o algoritmo SHA-256 ao cabeçalho do bloco, variando o número aleatório conhecido como nonce.</p>
+                <p>A dificuldade de mineração é ajustada automaticamente a cada 2016 blocos (aproximadamente duas semanas) para garantir que a taxa média de emissão permaneça em 10 minutos por bloco, independentemente de quanto poder computacional (hashrate) entre ou saia da rede. Esse ajuste dinâmico de dificuldade é uma das inovações mais críticas de Nakamoto.</p>
+                <p>Transações aguardam na mempool (uma sala de espera para transações não confirmadas). Os mineradores selecionam as transações que pagam as taxas mais altas por byte para otimizar seus lucros. Hoje, quase todos os mineradores participam de pools de mineração, agregando poder de hash para suavizar a variância na descoberta de blocos e na distribuição das recompensas.</p>
+            </section>
+
+            <section id="halving" class="section">
+                <h2>O Halving: Escassez Programada</h2>
+                <p>O protocolo do Bitcoin define um suprimento máximo de 21 milhões de moedas. A emissão de novos bitcoins ocorre exclusivamente através da transação coinbase do bloco minerado, também conhecida como subsídio de bloco. Originalmente, a recompensa era de 50 BTC por bloco.</p>
+                <p>A cada 210.000 blocos (aproximadamente quatro anos), esse subsídio é cortado pela metade num evento chamado Halving. O primeiro halving ocorreu em 2012 reduzindo a recompensa para 25 BTC. O cronograma continua até que o limite máximo seja atingido por volta do ano 2140. Atualmente, a recompensa é de 3.125 BTC por bloco.</p>
+                <p>O modelo Stock-to-Flow tenta mapear essa emissão em relação ao estoque existente. Esta política monetária imutável torna o Bitcoin um ativo estritamente deflacionário, contrastando frontalmente com as moedas fiduciárias emitidas por bancos centrais e sua inflação inerente.</p>
+            </section>
+
+            <section id="carteiras" class="section">
+                <h2>Carteiras e Custódia</h2>
+                <p>Possuir Bitcoin significa ter controle sobre a chave privada correspondente a um endereço UTXO (Unspent Transaction Output) na rede. As chaves privadas derivam chaves públicas utilizando a curva elíptica secp256k1, que por sua vez são transformadas em endereços através de funções de hash.</p>
+                <p>Existem diferentes formatos de endereços: Legacy (P2PKH, começando com 1), Pay-to-Script-Hash (P2SH, começando com 3), Native SegWit (bech32, começando com bc1q) e Taproot (bech32m, começando com bc1p). As carteiras modernas (HD Wallets) utilizam os padrões BIP32/39/44 para gerar chaves determinísticas a partir de uma semente (seed phrase) de 12 ou 24 palavras.</p>
+                <p>A custódia própria é a prática de manter suas próprias chaves privadas, em vez de confiá-las a terceiros (como exchanges). É a expressão máxima da soberania financeira que o Bitcoin proporciona. Hardware wallets isolam as chaves do computador ou smartphone, reduzindo o risco de malware.</p>
+            </section>
+
+            <section id="lightning" class="section">
+                <h2>Lightning Network</h2>
+                <p>A Lightning Network é um protocolo de segunda camada (Layer 2) que possibilita transações instantâneas, com taxas microscópicas, através de uma rede de canais de pagamento bidirecionais off-chain. É baseada em contratos inteligentes conhecidos como HTLCs (Hashed Timelock Contracts).</p>
+                <p>Ao invés de registrar cada pequena transação na blockchain (o que seria lento e custoso), os participantes trocam balanços assinados criptograficamente. Somente o saldo final (net settlement) é publicado on-chain quando o canal é fechado. Isso fornece a escalabilidade necessária para usar Bitcoin como meio de troca diário sem comprometer a segurança da camada base.</p>
+                <p>Invoices BOLT11 e a padronização LNURL facilitam a interação entre usuários, permitindo pagamentos via QR code, doações por streaming e microtransações em conteúdo online, viabilizando novos modelos de negócios na web.</p>
+            </section>
+
+            <section id="nodes" class="section">
+                <h2>Nós e Descentralização</h2>
+                <p>A verdadeira força da rede não reside apenas nos mineradores, mas nos nós validadores completos (Full Nodes). Um full node, tipicamente executando o software Bitcoin Core, verifica independentemente cada transação e cada bloco recebido contra as regras estritas do consenso, rejeitando qualquer dado inválido.</p>
+                <p>Nós SPV (Simplified Payment Verification) ou nós leves não baixam toda a blockchain. Eles dependem dos full nodes para verificar transações, assumindo certos trade-offs de privacidade e segurança em favor da conveniência (como em carteiras de celular).</p>
+                <p>Rodar o seu próprio full node garante máxima privacidade (as consultas de seus endereços não vão para servidores de terceiros) e contribui ativamente para a descentralização, assegurando que o conjunto de regras do protocolo (limite de 21 milhões, política de halving) seja preservado inalterado contra qualquer tentativa de coerção central.</p>
+            </section>
+        </article>
+
+        <aside class="sidebar">
+            <div class="card">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="#whitepaper">Whitepaper</a></li>
+                    <li><a href="#blockchain">Blockchain</a></li>
+                    <li><a href="#proof-of-work">Proof of Work</a></li>
+                    <li><a href="#halving">Halving</a></li>
+                    <li><a href="#carteiras">Custódia</a></li>
+                    <li><a href="#lightning">Lightning</a></li>
+                    <li><a href="#nodes">Nós</a></li>
+                </ul>
+            </div>
+            
+            <div class="ad-slot ad-slot-sidebar">
+                <!-- Sidebar ad -->
+            </div>
+
+            <div class="card bg-accent">
+                <h3>Newsletter</h3>
+                <p>Receba análises técnicas profundas toda semana.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Seu e-mail" required>
+                    <button class="btn btn-secondary">Assinar</button>
+                </form>
+            </div>
+        </aside>
+    </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">Manual<strong>BTC</strong></a>
+        <p>O guia definitivo sobre Bitcoin. Educação, análise e fundamentos para quem leva o Bitcoin a sério.</p>
+        <address><a href="mailto:etc.env@outlook.com">etc.env@outlook.com</a></address>
+      </div>
+      <div class="footer-nav-group"><h3>Conteúdo</h3><ul><li><a href="noticias.html">Notícias</a></li><li><a href="fundamentos.html">Fundamentos</a></li><li><a href="aprenda.html">Aprenda</a></li></ul></div>
+      <div class="footer-nav-group"><h3>Institucional</h3><ul><li><a href="sobre.html">Sobre Nós</a></li><li><a href="contato.html">Contato</a></li><li><a href="doacao.html">Apoiar</a></li></ul></div>
+      <div class="footer-nav-group"><h3>Legal</h3><ul><li><a href="politica-privacidade.html">Privacidade</a></li><li><a href="termos-uso.html">Termos de Uso</a></li><li><a href="aviso-legal.html">Aviso Legal</a></li></ul></div>
+      <div class="footer-newsletter"><h3>Newsletter</h3><p>Análises e notícias diretamente no seu e-mail.</p><form class="newsletter-form" id="newsletter-form-footer"><input type="email" placeholder="Seu endereço de e-mail" required aria-label="E-mail"><button type="submit" class="btn btn-primary btn-sm">Assinar</button></form></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Manual BTC. Todos os direitos reservados.</p>
+      <p class="footer-disclaimer">O conteúdo deste site é exclusivamente educacional e informativo. Não constitui consultoria financeira. <a href="aviso-legal.html">Aviso legal completo.</a></p>
+    </div>
+  </div>
+</footer>
+<div class="cookie-banner" id="cookie-banner" role="alert"><div class="container"><p>Utilizamos cookies para melhorar sua experiência. <a href="politica-privacidade.html">Saiba mais.</a></p><button class="btn btn-primary btn-sm" id="cookie-accept">Aceitar</button></div></div>
+
+<script type="module" src="assets/js/theme.js"></script>
+<script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

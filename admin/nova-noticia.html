@@ -1,0 +1,487 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Notícia - Manual BTC Admin</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="https://cdn.quilljs.com/1.3.7/quill.snow.css">
+    <script>
+        (function(){
+            var t = localStorage.getItem('manualbtc-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
+    <style>
+        .nova-noticia-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            align-items: start;
+        }
+        @media (max-width: 992px) {
+            .nova-noticia-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .settings-panel {
+            background: var(--color-bg-card);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            position: sticky;
+            top: 2rem;
+        }
+        #editor-container {
+            height: 500px;
+            background: var(--color-bg-card);
+            color: var(--color-text-primary);
+        }
+        .ql-toolbar {
+            background: var(--color-bg-card);
+            border-color: var(--color-border) !important;
+        }
+        .ql-container {
+            border-color: var(--color-border) !important;
+        }
+        .tags-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .tag-pill {
+            background: var(--color-accent);
+            color: #000;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .tag-pill button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            color: #000;
+            font-weight: bold;
+        }
+        .toast-container {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 9999;
+        }
+        .toast {
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .toast-success { background: #10b981; }
+        .toast-error { background: #dc2626; }
+    </style>
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar" id="admin-sidebar">
+            <div class="sidebar-logo">
+                <a href="dashboard.html">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 10c.83 0 1.5-.67 1.5-1.5v-1c0-.83-.67-1.5-1.5-1.5H11V10h3.5zm.5 2.5H11V15h4c.83 0 1.5-.67 1.5-1.5 0-.83-.67-1.5-1.5-1.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                    Manual<strong>BTC</strong> <span class="sidebar-badge">Admin</span>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html" data-page="dashboard">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                        Dashboard
+                    </a></li>
+                    <li class="active"><a href="nova-noticia.html" data-page="nova-noticia">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        Nova Notícia
+                    </a></li>
+                    <li><a href="gerenciar.html" data-page="gerenciar">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Gerenciar
+                    </a></li>
+                    <li><a href="newsletter.html" data-page="newsletter">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        Newsletter
+                    </a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../index.html" target="_blank" class="sidebar-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    Ver Site
+                </a>
+                <button class="btn-logout" id="btn-logout">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Sair
+                </button>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="admin-breadcrumb">Admin / Nova Notícia</div>
+            </header>
+
+            <div class="admin-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h1 style="margin: 0;">Nova Notícia</h1>
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="button" class="btn-admin-secondary" id="btn-preview" style="display: none;">Pré-visualizar</button>
+                        <button type="button" class="btn-admin-secondary" id="btn-draft">Salvar Rascunho</button>
+                        <button type="button" class="btn-admin-primary" id="btn-publish">Publicar</button>
+                    </div>
+                </div>
+                
+                <form id="article-form" class="admin-form nova-noticia-grid">
+                    <div class="main-column">
+                        <div class="field-group">
+                            <label for="title" class="field-label">Título do Artigo *</label>
+                            <input type="text" id="title" class="field-input" maxlength="65" placeholder="Título SEO otimizado" required>
+                            <div class="char-counter" id="title-counter" style="text-align: right; font-size: 0.875rem; margin-top: 0.25rem;">0/65</div>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="slug" class="field-label">URL Amigável (Slug)</label>
+                            <div class="slug-preview" style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="color: var(--color-text-secondary);">manualbtc.com.br/artigo.html?slug=</span>
+                                <input type="text" id="slug" class="field-input" style="flex: 1;">
+                            </div>
+                            <div class="field-hint" style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 0.25rem;">Gerado automaticamente. Use apenas letras minúsculas, números e hífens.</div>
+                        </div>
+
+                        <div class="field-group">
+                            <label class="field-label">Conteúdo do Artigo *</label>
+                            <div id="editor-container"></div>
+                            <div class="field-hint" style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 0.25rem;">Para inserir imagens, use URLs externas (Imgur, Cloudinary, PostImages, etc.)</div>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="excerpt" class="field-label">Resumo / Meta Description</label>
+                            <textarea id="excerpt" class="field-input" maxlength="160" rows="3"></textarea>
+                            <div class="char-counter" id="excerpt-counter" style="text-align: right; font-size: 0.875rem; margin-top: 0.25rem;">0/160</div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-column settings-panel">
+                        <div class="field-group">
+                            <label for="status" class="field-label">Status</label>
+                            <select id="status" class="field-input">
+                                <option value="draft">Rascunho</option>
+                                <option value="published">Publicado</option>
+                            </select>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="category" class="field-label">Categoria *</label>
+                            <select id="category" class="field-input" required>
+                                <option value="">Selecione...</option>
+                                <option value="Fundamentos">Fundamentos</option>
+                                <option value="Mineração">Mineração</option>
+                                <option value="Economia">Economia</option>
+                                <option value="Lightning Network">Lightning Network</option>
+                                <option value="Segurança">Segurança</option>
+                                <option value="Mercado">Mercado</option>
+                                <option value="Tecnologia">Tecnologia</option>
+                                <option value="Regulação">Regulação</option>
+                            </select>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="cover-image-url" class="field-label">URL da Imagem de Capa</label>
+                            <input type="url" id="cover-image-url" class="field-input" placeholder="https://...">
+                            <img id="cover-preview" class="img-preview" src="" alt="" style="display: none; width: 100%; aspect-ratio: 16/9; object-fit: cover; margin-top: 0.5rem; border-radius: 4px;">
+                            <div class="field-hint" style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: 0.25rem;">Resolução recomendada: 1200x630px. Use Imgur, Cloudinary ou PostImages.</div>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="author" class="field-label">Autor</label>
+                            <input type="text" id="author" class="field-input" value="Manual BTC">
+                        </div>
+
+                        <div class="field-group">
+                            <label class="field-label">Tags</label>
+                            <div class="tag-input-container" style="display: flex; gap: 0.5rem;">
+                                <input type="text" id="tag-input" class="field-input" placeholder="Nova tag">
+                                <button type="button" id="btn-add-tag" class="btn-admin-secondary">Add</button>
+                            </div>
+                            <div class="tags-list" id="tags-list"></div>
+                        </div>
+
+                        <div class="field-group">
+                            <div class="reading-time-display" id="reading-time" style="font-size: 0.875rem; color: var(--color-text-secondary);">Tempo de leitura: 0 min</div>
+                        </div>
+
+                        <div class="field-group" style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" id="featured">
+                            <label for="featured">Artigo em destaque na home</label>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="publish-date" class="field-label">Data de Publicação</label>
+                            <input type="datetime-local" id="publish-date" class="field-input">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="https://cdn.quilljs.com/1.3.7/quill.js"></script>
+    <script type="module">
+        import { auth, db } from '../assets/js/firebase-config.js';
+        import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+        import { collection, addDoc, doc, updateDoc, getDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+        let quill;
+        let isDirty = false;
+        let articleId = new URLSearchParams(window.location.search).get('id');
+        let currentTags = [];
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = '/admin/index.html';
+                return;
+            }
+
+            // Init Quill
+            quill = new Quill('#editor-container', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [1, 2, 3, false] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        ['blockquote', 'code-block'],
+                        ['link', 'image', 'video'],
+                        [{ 'align': [] }],
+                        [{ 'color': [] }, { 'background': [] }],
+                        ['clean']
+                    ]
+                }
+            });
+
+            quill.on('text-change', function() {
+                isDirty = true;
+                const text = quill.getText();
+                const words = text.trim().split(/\s+/).length;
+                const minutes = Math.ceil(words / 200);
+                document.getElementById('reading-time').textContent = `Tempo de leitura: ${minutes} min`;
+            });
+
+            // Set default date
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+            document.getElementById('publish-date').value = now.toISOString().slice(0,16);
+
+            // Load article if editing
+            if (articleId) {
+                document.querySelector('h1').textContent = 'Editar Notícia';
+                document.getElementById('btn-preview').style.display = 'block';
+                document.getElementById('btn-preview').onclick = () => window.open(`/artigo.html?id=${articleId}`, '_blank');
+                try {
+                    const docRef = doc(db, 'noticias', articleId);
+                    const docSnap = await getDoc(docRef);
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+                        document.getElementById('title').value = data.title || '';
+                        document.getElementById('slug').value = data.slug || '';
+                        quill.root.innerHTML = data.content || '';
+                        document.getElementById('excerpt').value = data.excerpt || '';
+                        document.getElementById('status').value = data.status || 'draft';
+                        document.getElementById('category').value = data.category || '';
+                        document.getElementById('cover-image-url').value = data.coverImage || '';
+                        if(data.coverImage) {
+                            const preview = document.getElementById('cover-preview');
+                            preview.src = data.coverImage;
+                            preview.style.display = 'block';
+                        }
+                        document.getElementById('author').value = data.author || 'Manual BTC';
+                        document.getElementById('featured').checked = data.featured || false;
+                        if (data.publishDate) {
+                            document.getElementById('publish-date').value = new Date(data.publishDate).toISOString().slice(0,16);
+                        }
+                        if (data.tags) {
+                            currentTags = data.tags;
+                            renderTags();
+                        }
+                        updateCounters();
+                        isDirty = false;
+                    }
+                } catch(e) {
+                    showToast('Erro ao carregar artigo', 'error');
+                }
+            }
+        });
+
+        document.getElementById('btn-logout').addEventListener('click', () => {
+            signOut(auth).then(() => {
+                window.location.href = '/admin/index.html';
+            });
+        });
+
+        // Auto Slug
+        let slugTimeout;
+        document.getElementById('title').addEventListener('input', (e) => {
+            clearTimeout(slugTimeout);
+            updateCounters();
+            isDirty = true;
+            if(!articleId) { // Only auto-generate if new
+                slugTimeout = setTimeout(() => {
+                    const slug = e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+                    document.getElementById('slug').value = slug;
+                }, 500);
+            }
+        });
+
+        // Counters
+        function updateCounters() {
+            const titleLen = document.getElementById('title').value.length;
+            const tCounter = document.getElementById('title-counter');
+            tCounter.textContent = `${titleLen}/65`;
+            if(titleLen > 60) tCounter.style.color = '#dc2626';
+            else if(titleLen > 50) tCounter.style.color = '#f59e0b';
+            else tCounter.style.color = '#10b981';
+
+            const excLen = document.getElementById('excerpt').value.length;
+            document.getElementById('excerpt-counter').textContent = `${excLen}/160`;
+        }
+        document.getElementById('excerpt').addEventListener('input', updateCounters);
+
+        // Image Preview
+        let imgTimeout;
+        document.getElementById('cover-image-url').addEventListener('input', (e) => {
+            isDirty = true;
+            clearTimeout(imgTimeout);
+            const preview = document.getElementById('cover-preview');
+            imgTimeout = setTimeout(() => {
+                const url = e.target.value;
+                if(url) {
+                    preview.src = url;
+                    preview.style.display = 'block';
+                } else {
+                    preview.style.display = 'none';
+                }
+            }, 800);
+        });
+        document.getElementById('cover-preview').onerror = function() {
+            this.style.display = 'none';
+        };
+
+        // Tags
+        function renderTags() {
+            const container = document.getElementById('tags-list');
+            container.innerHTML = '';
+            currentTags.forEach((tag, index) => {
+                const pill = document.createElement('div');
+                pill.className = 'tag-pill';
+                pill.innerHTML = `<span>${tag}</span> <button type="button" onclick="window.removeTag(${index})">×</button>`;
+                container.appendChild(pill);
+            });
+        }
+        window.removeTag = (index) => {
+            currentTags.splice(index, 1);
+            isDirty = true;
+            renderTags();
+        };
+        function addTag() {
+            const input = document.getElementById('tag-input');
+            const val = input.value.trim();
+            if(val && !currentTags.includes(val)) {
+                currentTags.push(val);
+                renderTags();
+                input.value = '';
+                isDirty = true;
+            }
+        }
+        document.getElementById('btn-add-tag').addEventListener('click', addTag);
+        document.getElementById('tag-input').addEventListener('keypress', (e) => {
+            if(e.key === 'Enter' || e.key === ',') {
+                e.preventDefault();
+                addTag();
+            }
+        });
+
+        // Save
+        async function saveArticle(forceStatus = null) {
+            const title = document.getElementById('title').value;
+            const content = quill.root.innerHTML;
+            const category = document.getElementById('category').value;
+            
+            if(!title || quill.getText().trim().length === 0 || !category) {
+                showToast('Título, Conteúdo e Categoria são obrigatórios', 'error');
+                return;
+            }
+
+            const status = forceStatus || document.getElementById('status').value;
+
+            const articleData = {
+                title,
+                slug: document.getElementById('slug').value,
+                content,
+                excerpt: document.getElementById('excerpt').value,
+                status,
+                category,
+                coverImage: document.getElementById('cover-image-url').value,
+                author: document.getElementById('author').value,
+                featured: document.getElementById('featured').checked,
+                publishDate: new Date(document.getElementById('publish-date').value).toISOString(),
+                tags: currentTags,
+                readingTime: parseInt(document.getElementById('reading-time').textContent.replace(/\D/g, '')) || 0,
+                updatedAt: serverTimestamp()
+            };
+
+            try {
+                if(articleId) {
+                    await updateDoc(doc(db, 'noticias', articleId), articleData);
+                    showToast('Artigo atualizado com sucesso!');
+                } else {
+                    articleData.createdAt = serverTimestamp();
+                    const docRef = await addDoc(collection(db, 'noticias'), articleData);
+                    articleId = docRef.id;
+                    showToast('Artigo criado com sucesso!');
+                    history.replaceState(null, '', `?id=${articleId}`);
+                }
+                isDirty = false;
+                setTimeout(() => {
+                    window.location.href = '/admin/gerenciar.html';
+                }, 1500);
+            } catch(e) {
+                console.error(e);
+                showToast('Erro ao salvar artigo', 'error');
+            }
+        }
+
+        document.getElementById('btn-publish').addEventListener('click', () => saveArticle('published'));
+        document.getElementById('btn-draft').addEventListener('click', () => saveArticle('draft'));
+
+        window.addEventListener('beforeunload', (e) => {
+            if(isDirty) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>
